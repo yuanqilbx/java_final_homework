@@ -34,6 +34,7 @@ public class Main extends Application {
 	private int[][] curmap;
 	private int win;
 	private int mytime=0;
+	private int thetime;
 	private int picNum=0;
 	private BorderPane root;
 	private int now;
@@ -49,6 +50,7 @@ public class Main extends Application {
 		win=0;
 		mytime=0;
 		now=0;
+		thetime=0;
 		
 		//in=new FileInputStream(Config.filePath);
 		 ArrayList<String> input = new ArrayList<String>();
@@ -158,18 +160,18 @@ public class Main extends Application {
 	        {
 	        	
 	        	double dt=(currentNanoTime - startNanoTime)/1000000000.0;//1s 
-	        	int dt1= (int) (dt*2);
+	        	int dt1= (int) (dt*10);
 	        	if(input.contains("S"))
                 {
                 	input.remove("SPACE");
                 	input.remove("S");
                 }
-	        	if(dt1==mytime )
+	        	if(dt1==thetime )
 	        	{
 	        		return;
 	        	}else
 	        	{
-	        		mytime=dt1;
+	        		thetime=dt1;
 	        	}
 	        	if(input.contains("L"))
 	        	{
@@ -194,7 +196,7 @@ public class Main extends Application {
 	        
 	        	if(input.contains("SPACE")) {
 	        		
-	        		
+	        		mytime++;
 	        		ltt.setText("回合："+mytime+Config.text);
 	        		drawMap();
 	        		if(win==-1)
